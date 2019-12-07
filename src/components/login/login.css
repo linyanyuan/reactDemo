@@ -1,0 +1,10 @@
+#app .mainBox{
+    height: 100vh;
+}
+.leftImage{
+    background-image: url(../../image/photo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 100vh;
+}
