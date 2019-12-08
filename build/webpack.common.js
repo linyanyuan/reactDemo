@@ -48,18 +48,19 @@ module.exports = {
     },
     optimization: {
         splitChunks:{
-            chunks: 'all',
+            chunks: 'initial',
             cacheGroups:{
                 vendor: {
                     test: /node_modules/,
-                    chunks: 'all',
-                    name: 'vendor',
+                    chunks: 'initial',
+                    name: 'vendors',
                     priority: 10, // 优先
+                    minChunks:2,
                     enforce: true,
                 },
                 commons: { // split `common`和`components`目录下被打包的代码到`page/commons.js && .css`
                     chunks: 'initial',
-                    name: 'commons',
+                    name: 'foo',
                     minSize: 0, 
                     maxInitialRequests: 5,
                     minChunks: 2 // 重复2次才能打包到此模块

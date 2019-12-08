@@ -35,18 +35,7 @@ module.exports = merge(common,{
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.HashedModuleIdsPlugin(),
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'server',
-            analyzerHost: '127.0.0.1',
-            analyzerPort: 8889,
-            reportFilename: 'report.html',
-            defaultSizes: 'parsed',
-            openAnalyzer: true,
-            generateStatsFile: false,
-            statsFilename: 'stats.json',
-            statsOptions: null,
-            logLevel: 'info'
-        }), // 是否显示打包分布情况图
+        new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
     ]
 })
 
