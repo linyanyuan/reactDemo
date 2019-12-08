@@ -3,6 +3,19 @@ import React,{Component} from 'react'
 import {Row, Col, Icon, Form, Input,Button,Checkbox } from 'antd'
 import './Login.css'
 export default class Login extends Component {
+    handleSubmit = e =>{
+        e.preventDefault();
+        this.props.form.validateFields((err,values) =>{
+            if(!err){
+                this.props.history.push({
+                    pathname: '/home'
+                })
+            }
+        })
+    }
+    constructor(props){
+        super(props);
+    }
     render(){
         const { getFieldDecorator } = this.props.form;
         return(
@@ -13,7 +26,7 @@ export default class Login extends Component {
                         <Icon type="meh" theme="twoTone" style={{ fontSize: '40px',margin:'8px'}} twoToneColor="rgb(220, 0, 78)"/>
                         <Col style={{fontSize:'1.5rem',fontWeight: '400',lineHeight: '1.33'}}>Sign in</Col>
                         <Col lg={16} xl={16} style={{marginTop: '40px'}}>
-                            <Form className="login-form">
+                            <Form className="login-form" onSubmit={this.handleSubmit}>
                                 <Form.Item>
                                     {getFieldDecorator('username',{
                                         rules:[{ required: true, message: 'Please input your username!' }]

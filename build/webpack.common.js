@@ -48,7 +48,7 @@ module.exports = {
     },
     optimization: {
         splitChunks:{
-            chunks: 'initial',
+            chunks: 'all',
             cacheGroups:{
                 vendor: {
                     test: /node_modules/,
@@ -64,11 +64,26 @@ module.exports = {
                     minSize: 0, 
                     maxInitialRequests: 5,
                     minChunks: 2 // 重复2次才能打包到此模块
+                },
+                antd: { // 单独讲antd拆包
+                    name:'chunk-antd',
+                    priority: 20, // 权重大于vendor
+                    test:/[\\/]node_modules[\\/](.*@antd|.*@ant-design)[\\/]/,
                 }
             }
         },
         runtimeChunk: {
             name: 'manifest'
         }
+    },
+    performance:{ //性能提示和配置
+       //入口起点的最大体积
+        maxEntrypointSize: 50000000,
+        //生成文件的最大体积
+        maxAssetSize: 30000000,
+        //只给出 js 文件的性能提示
+	    	assetFilter: function(assetFilename) {
+	    		return assetFilename.endsWith('.js');
+	    	}
     }
 }

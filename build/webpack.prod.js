@@ -20,13 +20,17 @@ module.exports = merge(common,{
         minimizer: [
             new OptimizeCSSAssetsPlugin({}),
             new UglifyJsPlugin({
+                uglifyOptions: {
+                    warnings: false,
+                    drop_debugger: true,
+                    drop_console: true
+                },
                 cache: true,
                 parallel: true,
-                sourceMap: false, // set to true if you want JS source maps
+                sourceMap: true, // set to true if you want JS source maps
               }),],
     },
     plugins:[
-       
         new UglifyJsPlugin({ // 压缩
             sourceMap: false //启用或者不启用sorceMap
         }),
@@ -35,7 +39,7 @@ module.exports = merge(common,{
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.HashedModuleIdsPlugin(),
-        new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
+        // new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
     ]
 })
 
