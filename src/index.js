@@ -1,6 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Router from './config/Route' // 引入路由表
+// import zhCN from 'antd/es/locale/zh_CN';
+// import 'antd/dist/antd.css'; // 引入antd.css
 import './style.css'
-console.log('sdsfsfsdfsdfsdfsagfdsag')
-const ele = React.createElement('div',{className:'hello'},'士大夫萨芬')
-ReactDOM.render(ele,document.getElementById("app"))
+ReactDOM.render(
+    <Router></Router>,
+    document.getElementById('app')
+)
