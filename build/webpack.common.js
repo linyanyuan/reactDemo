@@ -8,7 +8,8 @@ module.exports = {
     entry:'./src/index.js',
     output: {
         filename:'[name].[hash].js',
-        path:path.resolve(__dirname,'../dist')
+        path:path.resolve(__dirname,'../dist'),
+        publicPath: process.env.NODE_ENV === 'production' ? '/dist/' : '/'
     },
     plugins:[
         new MiniCssExtractPlugin({

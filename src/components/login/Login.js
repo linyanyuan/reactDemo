@@ -8,7 +8,7 @@ export default class Login extends Component {
         this.props.form.validateFields((err,values) =>{
             if(!err){
                 this.props.history.push({
-                    pathname: '/home'
+                    pathname: '/app'
                 })
             }
         })

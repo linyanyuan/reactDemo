@@ -1,0 +1,12 @@
+.header_box{
+    padding: 20px;
+    display: flex;
+}
+.header_box .header_right{
+    flex: 1;
+}
+.header_box .search_box{
+    height: 35px;
+    outline: none;
+    margin-left:20px;
+}
