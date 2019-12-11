@@ -5,8 +5,5 @@ module.exports = merge(common,{
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     plugins: [ 
-    ],
-    devServer: {
-        contentBase:'../dist'
-    }
+    ]
 })
