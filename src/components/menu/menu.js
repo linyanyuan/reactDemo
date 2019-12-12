@@ -1,26 +1,30 @@
 // 左侧menu
 import React, {Component} from 'react';
 import {Menu, Icon} from 'antd';
-export default class menus extends Component{
+import { withRouter } from 'react-router-dom';
+class menus extends Component{
     constructor(props){
         super(props)
-        console.log(this)
     }
     toggleClick = e =>{
-        console.log( this.props)
+        this.props.history.push({
+            pathname:`/app${e.key}`
+        })
     }
     render(){
+        let path = this.props.location.pathname;
+        path = path.split('/app')[1] ? path.split('/app')[1] : '/home'
         return (
-            <Menu theme="light" mode="inline" defaultSelectedKeys={['home']} onClick={this.toggleClick}>
-                <Menu.Item key="home">
+            <Menu theme="light" mode="inline" defaultSelectedKeys={[path]} onClick={this.toggleClick}>
+                <Menu.Item key="/home">
                     <Icon type="user"></Icon>
                     <span>我的统计</span>
                 </Menu.Item>
-                <Menu.Item key="info">
+                <Menu.Item key="/info">
                     <Icon type="desktop"></Icon>
                     <span>支出统计</span>
                 </Menu.Item>
-                <Menu.Item key="3">
+                <Menu.Item key="/message">
                     <Icon type="inbox"></Icon>
                     <span>Dashboard1</span>
                 </Menu.Item>
@@ -28,3 +32,4 @@ export default class menus extends Component{
         )
     }
 }
+export default withRouter(menus)

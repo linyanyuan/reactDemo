@@ -4,6 +4,12 @@ const path = require('path');
 module.exports = merge(common,{
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
+    devServer:{
+        contentBase:'./',
+        host:'localhost',
+        compress:true,
+        historyApiFallback: true
+    },
     plugins: [ 
     ]
 })
