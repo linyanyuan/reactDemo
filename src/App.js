@@ -5,7 +5,7 @@ import Menus from './components/menu/menu.js' // 引入menu菜单
 import Header from './components/header/header.js' // 引入header组件
 import Home from './components/Home' // Home组件
 import Info from './components/Info/info' // Home组件
-import {Layout, Avatar} from 'antd';
+import {Layout, Avatar,message} from 'antd';
 const {Sider, Content} = Layout;
 import './style.css'
 import pic from './image/pic.jpg'
@@ -21,6 +21,10 @@ class App extends Component{
         this.setState({
             collapsed:!this.state.collapsed
         })
+    }
+    // 生命周期
+    componentDidMount(){
+        message.success('你好，逗比');
     }
     render(){
         return (
