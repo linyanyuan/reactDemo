@@ -1,0 +1,22 @@
+.home_content .cardCharts{
+    border-radius: 6px;
+    border: 1px solid #e5e9ec;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    background-color: #fff;
+}
+.home_content .card_body{
+    padding: 25px;
+}
+.card_title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #333333;
+    margin: 0;
+    padding-bottom: 20px;
+}
+.cost_list{
+    border-radius: 8px;
+    border: 1px solid #e5e9ec;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    background-color: #fff;
+}

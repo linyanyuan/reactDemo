@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Link, Route, Switch } from "react-router-dom";
 import Menus from './components/menu/menu.js' // 引入menu菜单
 import Header from './components/header/header.js' // 引入header组件
-import Home from './components/Home' // Home组件
+import Home from './components/home/Home' // Home组件
 import Info from './components/Info/info' // Home组件
 import {Layout, Avatar,message} from 'antd';
 const {Sider, Content} = Layout;
