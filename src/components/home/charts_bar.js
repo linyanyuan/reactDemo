@@ -56,8 +56,9 @@ class BarChart extends Component {
                         color: 'rgb(0, 227, 150)',
                         barBorderRadius: [7, 7, 0, 0]
                     },
+                    smooth:true,
                     barMaxWidth:'20%',
-                    data: [100, 100, 100, 100, 100, 100]
+                    data: [50, 50, 50, 50, 50, 50]
                 },
                 {
                     type: 'bar',
