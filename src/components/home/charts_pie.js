@@ -24,6 +24,7 @@ class PieCharts extends Component {
                     radius: ['50%', '80%'],
                     label: {
                         show:true,
+                        formatter:'{b0}('+'{d0}%)'
                     },
                     labelLine: {
                         show:true,
