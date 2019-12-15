@@ -24,7 +24,7 @@ class App extends Component{
     }
     // 生命周期
     componentDidMount(){
-        message.success('你好，逗比');
+        // message.success('你好，逗比');
     }
     render(){
         return (

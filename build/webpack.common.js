@@ -5,11 +5,27 @@ const path = require("path")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 单独分离出css文件
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
-    entry:'./src/index.js',
+    // entry:'./src/index.js',
+    entry:{
+        app: path.resolve(__dirname,'../src/index.js'),
+        // 将 第三方依赖 单独打包
+        source: [
+            'react', 
+            'react-dom', 
+            'react-redux', 
+            'react-router-dom',
+            'redux'
+        ]
+    },
     output: {
         filename:'[name].[hash].js',
         path:path.resolve(__dirname,'../dist'),
         publicPath: process.env.NODE_ENV === 'production' ? '/dist/' : '/'
+    },
+    devServer:{
+        proxy:{
+            "/api":"http://192.168.0.111:8080"
+        }
     },
     plugins:[
         new MiniCssExtractPlugin({
