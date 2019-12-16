@@ -37,6 +37,10 @@ class menus extends Component{
                     <Icon type="inbox"></Icon>
                     <span>Dashboard1</span>
                 </Menu.Item>
+                <Menu.Item key="/youth">
+                    <Icon type="fire" theme="outlined" spin={false}></Icon>
+                    <span>我的青春</span>
+                </Menu.Item>
             </Menu>
         )
     }

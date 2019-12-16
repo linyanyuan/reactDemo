@@ -1,0 +1,19 @@
+/* For demo */
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+
+.time_axis {
+    padding: 10px;
+    border-radius:20px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 5px 5px #ccc;
+}

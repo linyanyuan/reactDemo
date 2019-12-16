@@ -5,6 +5,7 @@ import Menus from './components/menu/menu.js' // 引入menu菜单
 import Header from './components/header/header.js' // 引入header组件
 import Home from './components/home/Home' // Home组件
 import Info from './components/Info/info' // Home组件
+import {Youth} from './components/youth/youth'; //youth组件
 import {Layout, Avatar,message} from 'antd';
 const {Sider, Content} = Layout;
 import './style.css'
@@ -44,7 +45,8 @@ class App extends Component{
                         <Switch>
                             <Route exact path={`${this.props.match.url}/`} component={Home} />
                             <Route  path={`${this.props.match.url}/home`} component={Home} />
-                            <Route  path={`${this.props.match.url}/info`} component={Info} />                        
+                            <Route  path={`${this.props.match.url}/info`} component={Info} />
+                            <Route  path={`${this.props.match.url}/youth`} component={Youth}/>
                         </Switch> 
                     </div>
                 </Layout>
