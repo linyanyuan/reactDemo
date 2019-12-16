@@ -39,7 +39,7 @@ module.exports = merge(common,{
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.HashedModuleIdsPlugin(),
-        // new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
+        new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
     ]
 })
 

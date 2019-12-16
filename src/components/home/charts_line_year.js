@@ -18,7 +18,7 @@ class LineCharts extends Component{
                 axisLabel:{
                     interval:0
                 },
-                data: ['一月', '二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月',]
+                data: ['1月', '2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',]
             },
             grid:{
                 top:'5%',
@@ -26,13 +26,14 @@ class LineCharts extends Component{
             },
             yAxis: {
                 type: 'value',
-                nameGap: 20,
                 axisLine: {
                     show: false
                 },
-                min:function(value){
-                    return value.min - 1000
+                min:0,
+                max:function(value){
+                    return value.max + 1000
                 },
+                splitNumber:4,
                 axisTick: {
                     show: false
                 },
@@ -49,11 +50,9 @@ class LineCharts extends Component{
                     type: 'line',
                     name: '支出',
                     itemStyle: {
-                        color: 'rgb(0, 227, 150)',
-                        barBorderRadius: [7, 7, 0, 0]
+                        color: 'rgb(0, 227, 150)'
                     },
                     smooth:true,
-                    barMaxWidth:'20%',
                     data: [8000, 9500, 6268, 9457, 5209, 7191,12334,5872,19589,15655,10265,5420]
                 }
             ]
