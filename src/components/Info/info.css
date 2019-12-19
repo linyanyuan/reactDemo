@@ -1,0 +1,23 @@
+.info_box{
+    border-radius: 6px;
+    border: 1px solid #e5e9ec;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    background-color: #fff;
+    margin: 10px;
+}
+.info_box .card_top{
+    padding-top: 10px;
+}
+.info_box .card_top:after{
+    display: table;
+    content: " ";
+    clear: both;
+}
+.info_box .left_title{
+    display: inline-block;
+    text-align: center;
+}
+.info_box>.left_info .ant-card-body{
+    display: flex;
+    align-items: center;
+}

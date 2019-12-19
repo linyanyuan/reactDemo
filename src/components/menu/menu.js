@@ -35,7 +35,7 @@ class menus extends Component{
                 </Menu.Item>
                 <Menu.Item key="/message">
                     <Icon type="inbox"></Icon>
-                    <span>Dashboard1</span>
+                    <span>音乐盒子</span>
                 </Menu.Item>
             </Menu>
         )

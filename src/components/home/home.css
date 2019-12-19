@@ -3,18 +3,19 @@
     border: 1px solid #e5e9ec;
     box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
     background-color: #fff;
+    margin: 10px;
 }
-.home_content .card_body{
+ .card_body{
     padding: 25px;
 }
-.home_content .card_body::after{
+.card_body::after{
     content: " ";
     clear: both;
     display: table;
 }
 .card_title{
     font-size: 14px;
-    font-weight: 700;
+    /* font-weight: 700; */
     color: #333333;
     margin: 0;
     padding-bottom: 20px;

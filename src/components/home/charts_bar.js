@@ -51,14 +51,14 @@ class BarChart extends Component {
             series: [
                 {
                     type: 'bar',
-                    name: '计划',
+                    name: '饮食',
                     itemStyle: {
                         color: 'rgb(0, 227, 150)',
                         barBorderRadius: [7, 7, 0, 0]
                     },
                     smooth:true,
                     barMaxWidth:'20%',
-                    data: [50, 50, 50, 50, 50, 50]
+                    data: [20, 30, 44, 22, 16, 45]
                 },
                 {
                     type: 'bar',

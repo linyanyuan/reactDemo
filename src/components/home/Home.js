@@ -19,7 +19,7 @@ class Home extends Component {
         return (
             <div>
                 <Row className="home_content">
-                    <Col lg={12} style={{ padding: '10px' }}>
+                    <Col lg={12} >
                         <div className="cardCharts">
                             <div className="card_body">
                                 <h5 className="card_title">月统计 
@@ -46,7 +46,7 @@ class Home extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col lg={12} style={{ padding: '10px' }}>
+                    <Col lg={12} >
                         <div className="cardCharts">
                             <div className="card_body">
                                 <h5 className="card_title">年统计
@@ -57,7 +57,7 @@ class Home extends Component {
                     </Col>
                 </Row>
                 <Row className="home_content">
-                    <Col lg={16} style={{ padding: '10px' }}>
+                    <Col lg={16}>
                         <div className="cardCharts">
                             <div className="card_body">
                                 <h5 className="card_title">本月支出分析</h5>
@@ -65,7 +65,7 @@ class Home extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col lg={8} style={{ padding: '10px' }}>
+                    <Col lg={8} >
                         <div className="cardCharts">
                             <div className="card_body">
                                 <h5 className="card_title">支出详情</h5>
