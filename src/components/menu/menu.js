@@ -31,7 +31,7 @@ class menus extends Component{
                 </Menu.Item>
                 <Menu.Item key="/info">
                     <Icon type="desktop"></Icon>
-                    <span>详细信息</span>
+                    <span>账单详情</span>
                 </Menu.Item>
                 <Menu.Item key="/message">
                     <Icon type="inbox"></Icon>

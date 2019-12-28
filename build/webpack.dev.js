@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = merge(common,{
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
@@ -11,5 +12,10 @@ module.exports = merge(common,{
         historyApiFallback: true
     },
     plugins: [ 
+        new HtmlWebpackPlugin({
+            template:'index.html',
+            filename:'index.html',
+            hash:true,
+        })
     ]
 })

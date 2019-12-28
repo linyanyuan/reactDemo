@@ -3,7 +3,7 @@
 //webpack 4.x有一个较大的特性 即约定大于配置 默认打包的入口路径是src->idnex.js
 const path = require("path")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 单独分离出css文件
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+
 module.exports = {
     // entry:'./src/index.js',
     entry:{
@@ -24,18 +24,14 @@ module.exports = {
     },
     devServer:{
         proxy:{
-            "/api":"http://192.168.0.111:8080"
+            "/api":"http://192.168.0.109:8080"
         }
     },
     plugins:[
         new MiniCssExtractPlugin({
             filename:'css/[name].[hash].css' // css 命名
         }),
-        new HtmlWebpackPlugin({
-            template:path.join(__dirname,'../src/index.html'),
-            filename:'index.html',
-            hash:true,
-        })
+       
     ],
     module:{
         rules:[

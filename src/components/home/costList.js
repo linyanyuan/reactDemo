@@ -1,9 +1,25 @@
 import React, {Component} from 'react';
 import {List} from 'antd';
+import { getMonthDateReal } from '../../api/getHomeData';
+import moment from 'moment';
 class CostList extends Component{
     constructor(props){
         super(props)
-        this.state={
+        let option ={
+            startDate:moment().startOf('month').format('YYYY-MM-DD'),
+            endDate: moment().endOf('month').format('YYYY-MM-DD')
+        }
+        this.state= {
+            data:[]
+        }
+        getMonthDateReal(option).then(res =>{
+            if(res.code === '1'){
+                this.setState({
+                    data:res.data
+                })
+            }
+        })
+       /*  this.state={
             data:[
                 {
                     payNum:'33',
@@ -36,7 +52,7 @@ class CostList extends Component{
                     title:'袁林岩'
                 }
             ]
-        }
+        } */
     }
     render(){
         return(
@@ -47,11 +63,11 @@ class CostList extends Component{
                     renderItem={item=>(
                         <List.Item 
                             actions={[
-                                <div>{item.payNum}</div>
+                                <div>{item.pay}</div>
                             ]}>
                             <List.Item.Meta 
-                            description={item.time}
-                            title={<a>{item.payRel}</a>} />
+                            description={`${item.date} ${item.time}`}
+                            title={<a>{item.message}</a>} />
                         </List.Item>
                     )}
                 >

@@ -2,10 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩代码
+const CopyWebpackPlugin = require('copy-webpack-plugin'); //打包静态资源
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');//css压缩
 const {CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 const common = require('./webpack.common.js');
 module.exports = merge(common,{
     mode:'production',
@@ -39,7 +40,27 @@ module.exports = merge(common,{
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.HashedModuleIdsPlugin(),
-        new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
+        // new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
+        // copy custom static assets
+		new CopyWebpackPlugin([{
+			from: path.resolve(__dirname, '../static'),
+			to: 'static',
+			ignore: ['.*']
+        }]),
+        new HtmlWebpackPlugin({
+            template:'index.html',
+            filename:path.join(__dirname,'../dist/index.html'),
+            inject: true,
+			minify: {
+				removeComments: true,
+				collapseWhitespace: true,
+				removeAttributeQuotes: true
+				// more options:
+				// https://github.com/kangax/html-minifier#options-quick-reference
+			},
+			// necessary to consistently work with multiple chunks via CommonsChunkPlugin
+			chunksSortMode: 'dependency'
+        })
     ]
 })
 

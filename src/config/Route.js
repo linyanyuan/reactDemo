@@ -4,7 +4,7 @@ import App from '../App' // 引入根组件
 import Login from '../components/login/Login'
 // 生成路由表
 const routes = ()=> (
-    <Router>
+    <HashRouter>
         <Switch>
             <Route exact  path="/login" component={Login}></Route>
             <Route path="/app" component={App}></Route>  
@@ -12,7 +12,7 @@ const routes = ()=> (
             <Redirect from="/" to="/login"></Redirect>
             <Redirect from='*' to='/404' />
         </Switch>
-    </Router>     
+    </HashRouter>     
 );
 export default routes
 
