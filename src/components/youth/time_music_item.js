@@ -4,6 +4,7 @@ class TimeMusicItem extends Component{
         super(props);
         // 代码优化
         this.delet= this.delet.bind(this);
+        console.log(1);
     }
     //子组件如果想和父组件通信，子组件要调用父组件传递过来的方法
     delet(){
