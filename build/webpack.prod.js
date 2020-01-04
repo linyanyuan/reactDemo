@@ -6,7 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin'); //打包静态资源
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');//css压缩
 const {CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const common = require('./webpack.common.js');
 module.exports = merge(common,{
     mode:'production',
@@ -28,7 +29,7 @@ module.exports = merge(common,{
                 },
                 cache: true,
                 parallel: true,
-                sourceMap: true, // set to true if you want JS source maps
+                sourceMap: false, // set to true if you want JS source maps
               }),],
     },
     plugins:[
@@ -40,7 +41,8 @@ module.exports = merge(common,{
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.HashedModuleIdsPlugin(),
-        // new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/), // 挑选zh-cn语言
+        new BundleAnalyzerPlugin(), // 是否显示打包分布情况图
         // copy custom static assets
 		new CopyWebpackPlugin([{
 			from: path.resolve(__dirname, '../static'),
@@ -60,7 +62,15 @@ module.exports = merge(common,{
 			},
 			// necessary to consistently work with multiple chunks via CommonsChunkPlugin
 			chunksSortMode: 'dependency'
-        })
+        }),
+        // 是否开启gzip 如果不开启请注释 或者新建config.index.js文件写个控制
+        new CompressionWebpackPlugin({
+            filename: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp('\\.(js|css)$'),
+            threshold: 10240,
+            minRatio: 0.8
+            })
     ]
 })
 

@@ -3,7 +3,7 @@
 //webpack 4.x有一个较大的特性 即约定大于配置 默认打包的入口路径是src->idnex.js
 const path = require("path")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 单独分离出css文件
-
+const config = require('../config');// 引入一些配置
 module.exports = {
     // entry:'./src/index.js',
     entry:{
@@ -24,7 +24,7 @@ module.exports = {
     },
     devServer:{
         proxy:{
-            "/api":"http://192.168.0.109:8080"
+            "/api":config.host,//这个根据本地ip配置
         }
     },
     plugins:[
@@ -43,7 +43,8 @@ module.exports = {
                         presets: ['@babel/preset-env'],
                         plugins: ['@babel/transform-runtime']}
                 }],
-                exclude:/(node_modules|bower_components)/
+                exclude:/(node_modules|bower_components)/,
+                include:path.resolve(__dirname,'../src')
             },
             {
                 test: /\.css$/,
@@ -82,6 +83,12 @@ module.exports = {
                     name:'chunk-antd',
                     priority: 20, // 权重大于vendor
                     test:/[\\/]node_modules[\\/](.*@antd|.*@ant-design)[\\/]/,
+                },
+                styles:{
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'async',
+                    enforce: true
                 }
             }
         },
@@ -98,5 +105,16 @@ module.exports = {
 	    	assetFilter: function(assetFilename) {
 	    		return assetFilename.endsWith('.js');
 	    	}
+    },
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        // 'redux': 'Redux',
+        // 'redux-thunk': 'ReduxThunk',
+        // 'react-redux': 'ReactRedux',
+        // 'redux-form': 'ReduxForm',
+        // 'immutable': 'Immutable',
+        // 'babel-polyfill': 'window', // polyfill 直接写 {} 也是可以的,
+        // 'transit-js': 'transit',
     }
 }

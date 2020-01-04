@@ -1,29 +1,29 @@
 // 左侧menu
-import React, {Component} from 'react';
-import {Menu, Icon} from 'antd';
+import React, { Component } from 'react';
+import { Menu, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
-class menus extends Component{
-    constructor(props){
+class menus extends Component {
+    constructor(props) {
         super(props)
-        this.state={
-            path:props.location.pathname.split('/app')[1] ? props.location.pathname.split('/app')[1] : '/home'
+        this.state = {
+            path: props.location.pathname.split('/app')[1] ? props.location.pathname.split('/app')[1] : '/home'
         }
     }
-    toggleClick = e =>{
+    toggleClick = e => {
         this.props.history.push({
-            pathname:`/app${e.key}`
+            pathname: `/app${e.key}`
         })
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         let path = nextProps.location.pathname.split('/app')[1] ? nextProps.location.pathname.split('/app')[1] : '/home'
         this.setState({
-            path:path
+            path: path
         })
     }
-    render(){
+    render() {
         return (
-            <Menu theme="light" mode="inline" defaultSelectedKeys={['/home']} 
-                selectedKeys={[this.state.path]}    
+            <Menu theme="light" mode="inline" defaultSelectedKeys={['/home']}
+                selectedKeys={[this.state.path]}
                 onClick={this.toggleClick}>
                 <Menu.Item key="/home">
                     <Icon type="user"></Icon>
@@ -33,9 +33,9 @@ class menus extends Component{
                     <Icon type="desktop"></Icon>
                     <span>账单详情</span>
                 </Menu.Item>
-                <Menu.Item key="/message">
-                    <Icon type="inbox"></Icon>
-                    <span>音乐盒子</span>
+                <Menu.Item key="/account">
+                    <Icon type="camera" />
+                    <span>生活记录</span>
                 </Menu.Item>
             </Menu>
         )
