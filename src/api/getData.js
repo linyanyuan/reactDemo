@@ -36,6 +36,7 @@ export const getData = ({url,type,param} = {}) =>{
 }
 export const postData = ({url,type,param} = {}) =>{
     return new Promise((resolve,reject) =>{
+        console.log(url,param);
         axios.post(url,param).then(res =>{
             resolve(res.data)
         }).catch(err =>{
