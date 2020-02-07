@@ -4,7 +4,7 @@ import {
     Select, Card, Icon, Button, Tooltip, Modal,
     Form, Input, message, Divider, Popconfirm
 } from 'antd';
-import { queryAccount, deleteAccount} from '../../api/getHomeData'; // 记账接口
+import { queryAccount, deleteAccount, updateAccount} from '../../api/getHomeData'; // 记账接口
 import { getMonthDateReal } from '../../api/getHomeData'; // 账单详情
 const { RangePicker } = DatePicker;
 import './info.css';
@@ -24,7 +24,9 @@ class Info extends Component {
             value: [moment().startOf('month'), moment().endOf('month')],
             selectType: 'month',
             visible: false,
+            edit: false, // 是否为修改
             typeArr: [],
+            editTypeId:null, // 修改的ID
             loading: false,//table的loading
             dataSource: [] // 账单详情
         }
@@ -73,7 +75,30 @@ class Info extends Component {
     // 显示记账modal
     showModel = () => {
         this.setState({
-            visible: true
+            visible: true,
+            edit: false
+        })
+        // 初始化数据
+        this.props.form.setFieldsValue({
+            message: null,
+            type: 'Catering',
+            price: 1,
+            date: moment()
+        })
+    };
+    // 修改
+    editModel = (params) => {
+        this.setState({
+            visible: true,
+            edit: true,
+            editTypeId:params.typeId
+        })
+        // 返显数据
+        this.props.form.setFieldsValue({
+            message: params.message,
+            type: params.type,
+            price: params.pay,
+            date: moment(`${params.date} ${params.time}`)
         })
     };
     // 取消
@@ -108,33 +133,51 @@ class Info extends Component {
                     type: values.type,
                     typeName: typeName
                 }
-                queryAccount(option).then(res => {
-                    if (res.code === '1') {
-                        message.success({
-                            content: res.msg
-                        })
-                        this.setState({
-                            visible: false
-                        })
-                        this.getMonthAccount();
-                    }
-                })
+                if (this.state.edit) {
+                    // 修改
+                    option.typeId = this.state.editTypeId;
+                    updateAccount(option).then(res =>{
+                        if (res.code === '1') {
+                            message.success({
+                                content: res.msg
+                            })
+                            this.setState({
+                                visible: false
+                            })
+                            this.getMonthAccount();
+                        }
+                    })
+                } else {
+                    // 记账
+                    queryAccount(option).then(res => {
+                        if (res.code === '1') {
+                            message.success({
+                                content: res.msg
+                            })
+                            this.setState({
+                                visible: false
+                            })
+                            this.getMonthAccount();
+                        }
+                    })
+                }
+
             }
         });
     };
     // 删除一条信息
-    handleDelete = key =>{
+    handleDelete = key => {
         const dataSource = [...this.state.dataSource];
         this.setState({
-            dataSource:dataSource.filter(item => item.typeId !== key.typeId)
+            dataSource: dataSource.filter(item => item.typeId !== key.typeId)
         });
         let option = {
-            typeId:key.typeId
+            typeId: key.typeId
         }
-        deleteAccount(option).then(res =>{
+        deleteAccount(option).then(res => {
             if (res.code === '1') {
                 message.success({
-                    content:res.msg
+                    content: res.msg
                 })
                 // this.getMonthAccount();
             }
@@ -180,6 +223,11 @@ class Info extends Component {
                 key: 'date'
             },
             {
+                title: '时间',
+                dataIndex: 'time',
+                key: 'time'
+            },
+            {
                 title: '类型',
                 dataIndex: 'typeName',
                 key: 'type'
@@ -204,7 +252,7 @@ class Info extends Component {
                             <a>删除</a>
                         </Popconfirm>
                         <Divider type="vertical"></Divider>
-                        <a>修改</a>
+                        <a onClick={() => this.editModel(record)}>修改</a>
                     </span>
                 )
             }
@@ -276,7 +324,7 @@ class Info extends Component {
                     </Col>
                     <Modal
                         visible={this.state.visible}
-                        title="记账"
+                        title={this.state.edit ? "修改" : "记账"}
                         onCancel={this.handleCancel}
                         footer={[
                             <Button key="cancel" type="primary" onClick={this.handleCancel}>取消</Button>,

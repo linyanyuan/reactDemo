@@ -13,3 +13,7 @@ export const queryAccount = (param) => {
 export const deleteAccount = (param) => {
     return getData({param,...{type:'get',url:api.deleteAccount}})
 } 
+// 修改
+export const updateAccount = (param) => {
+    return getData({param,...{type:'get',url:api.updateAccount}})
+} 

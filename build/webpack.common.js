@@ -105,16 +105,5 @@ module.exports = {
 	    	assetFilter: function(assetFilename) {
 	    		return assetFilename.endsWith('.js');
 	    	}
-    },
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        // 'redux': 'Redux',
-        // 'redux-thunk': 'ReduxThunk',
-        // 'react-redux': 'ReactRedux',
-        // 'redux-form': 'ReduxForm',
-        // 'immutable': 'Immutable',
-        // 'babel-polyfill': 'window', // polyfill 直接写 {} 也是可以的,
-        // 'transit-js': 'transit',
     }
 }

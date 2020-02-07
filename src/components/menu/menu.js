@@ -14,7 +14,7 @@ class menus extends Component {
             pathname: `/app${e.key}`
         })
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         let path = nextProps.location.pathname.split('/app')[1] ? nextProps.location.pathname.split('/app')[1] : '/home'
         this.setState({
             path: path

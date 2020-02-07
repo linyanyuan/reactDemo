@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 class PieCharts extends Component {
+    constructor(props,context) {
+        super(props,context);
+    }
+    static propTypes = {
+        idPrefix:PropTypes.string.isRequired,
+        chartsData:PropTypes.array.isRequired,//图形数据
+    }
     componentDidMount() {
         // 挂载完成
         let that = this;
@@ -9,25 +17,26 @@ class PieCharts extends Component {
     }
     initPieChart() {
         // 初始化
-        let pieCharts = echarts.init(document.getElementById("pie_main"));
+        const { idPrefix } = this.props;
+        let pieCharts = echarts.init(document.getElementById(`${idPrefix}_pie`));
         pieCharts.setOption({
             tooltip: {
                 trigger: 'item',
                 formatter: "{b}: {c} ({d}%)"
             },
             legend: {
-               show:false
+                show: false
             },
             series: [
                 {
                     type: 'pie',
                     radius: ['50%', '80%'],
                     label: {
-                        show:true,
-                        formatter:'{b0}('+'{d0}%)'
+                        show: true,
+                        formatter: '{b0}(' + '{d0}%)'
                     },
                     labelLine: {
-                        show:true,
+                        show: true,
                     },
                     data: [
                         { value: 335, name: '私家车' },
@@ -39,16 +48,20 @@ class PieCharts extends Component {
                 }
             ]
         })
-        window.addEventListener("resize",function(){
+        window.addEventListener("resize", function () {
             pieCharts.resize();
         });
     }
     render() {
+        const { idPrefix } = this.props;
         return (
             <div className="pie_charts">
-                <div id="pie_main" style={{ width: '100%', height: 160 }}></div>
+                <div id={`${idPrefix}_pie`} style={{width: '100%', height: 160}}/>
             </div>
         )
     }
 }
+/* PieCharts.propTypes = {
+    idPrefix: PropTypes.string.isRequired
+}; */
 export default PieCharts;

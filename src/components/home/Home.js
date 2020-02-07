@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Icon, Statistic} from 'antd';
 import BarChart from './charts_bar';
-import CostList from './costList';
-import PieChart from './charts_pie';
+import CostList from './costList'; // 支出排行
+import Statistics from './statistics'; // 统计组件
 import LineChart from './charts_line_year';
 import './home.css';
 import {Link } from "react-router-dom";
@@ -24,25 +24,7 @@ class Home extends Component {
                             <div className="card_body">
                                 <h5 className="card_title">月统计 
                                 <Link to={'/app/info'} style={{float:'right',fontSize:12,fontWeight:'normal'}}>查看详情</Link></h5>
-                                <Col lg={6} offset={1}>
-                                    <div className="money_totle">
-                                        <Statistic
-                                            title="支出"
-                                            value={8769}
-                                            prefix={<Icon type="pay-circle" style={{color:'#ffb822'}}/>}
-                                        />
-                                        <Statistic
-                                            style={{marginTop:20}}
-                                            title="同比"
-                                            value={1128}
-                                            valueStyle={{ color: '#3f8600'}}
-                                            prefix={<Icon type="arrow-up" />}
-                                        />
-                                    </div>
-                                </Col>
-                                <Col lg={16} offset={1}>
-                                    <PieChart></PieChart>
-                                </Col>
+                                {<Statistics idPrefix='month'></Statistics>}
                             </div>
                         </div>
                     </Col>
@@ -50,8 +32,8 @@ class Home extends Component {
                         <div className="cardCharts">
                             <div className="card_body">
                                 <h5 className="card_title">年统计
-                                <a onClick={this.LickTo.bind(this)} style={{float:'right',fontSize:12,fontWeight:'normal'}}>查看详情</a></h5>
-                                <LineChart></LineChart>
+                                <Link to={'/app/info'} style={{float:'right',fontSize:12,fontWeight:'normal'}}>查看详情</Link></h5>
+                                <Statistics idPrefix='year'></Statistics>
                             </div>
                         </div>
                     </Col>

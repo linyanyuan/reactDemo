@@ -71,6 +71,17 @@ module.exports = merge(common,{
             threshold: 10240,
             minRatio: 0.8
             })
-    ]
+    ],
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        // 'redux': 'Redux',
+        // 'redux-thunk': 'ReduxThunk',
+        // 'react-redux': 'ReactRedux',
+        // 'redux-form': 'ReduxForm',
+        // 'immutable': 'Immutable',
+        // 'babel-polyfill': 'window', // polyfill 直接写 {} 也是可以的,
+        // 'transit-js': 'transit',
+    }
 })
 
