@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Icon, Statistic} from 'antd';
-import BarChart from './charts_bar';
+// import BarChart from './charts_bar';
 import CostList from './costList'; // 支出排行
 import Statistics from './statistics'; // 统计组件
 import LineChart from './charts_line_year';
@@ -43,7 +43,7 @@ class Home extends Component {
                         <div className="cardCharts">
                             <div className="card_body">
                                 <h5 className="card_title">本月支出分析</h5>
-                                <BarChart></BarChart>
+                                <LineChart></LineChart>
                             </div>
                         </div>
                     </Col>

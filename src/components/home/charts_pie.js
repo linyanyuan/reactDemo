@@ -7,19 +7,41 @@ class PieCharts extends Component {
     static propTypes = {
         idPrefix:PropTypes.string.isRequired,
         chartsData:PropTypes.array.isRequired,//图形数据
+        chartColor: PropTypes.array, // 扇形区域颜色
+        maxShow: PropTypes.number, // 需 >= 0 最多展示几个扇形，不传则默认不处理，建议不要大于7
+    }
+    static defaultProps = {
+        chartColor: ['#60acfc', '#32d3eb', '#5bc49f', '#feb64d', '#ff7c7c', '#9287e7', '#eb2f96', '#faad14']
     }
     componentDidMount() {
         // 挂载完成
-        let that = this;
-        setTimeout(() => {
-            that.initPieChart()
-        }, 200)
     }
-    initPieChart() {
+    UNSAFE_componentWillReceiveProps(nextPorps){
+        this.initPieChart(nextPorps)
+    }
+    initPieChart(nextPorps) {
         // 初始化
-        const { idPrefix } = this.props;
+        const { idPrefix, chartColor,maxShow,chartsData} = nextPorps;
+        // 有maxShow时
+        let newChartsData = [];
+        if(maxShow && maxShow >= 0 && chartsData.length > maxShow){
+            let total = 0;
+            chartsData.sort((a,b)=>{
+                return b.value - a.value
+            })
+            newChartsData = chartsData.slice(0,maxShow);
+            chartsData.map((item,index) =>{
+                if(index > maxShow){
+                    total += item.value
+                }
+            })
+            newChartsData = [...newChartsData,{value:total,name:'其他'}]
+        }else{
+            newChartsData = [...chartsData];
+        }
         let pieCharts = echarts.init(document.getElementById(`${idPrefix}_pie`));
         pieCharts.setOption({
+            color:chartColor,
             tooltip: {
                 trigger: 'item',
                 formatter: "{b}: {c} ({d}%)"
@@ -37,14 +59,9 @@ class PieCharts extends Component {
                     },
                     labelLine: {
                         show: true,
+                        length:5
                     },
-                    data: [
-                        { value: 335, name: '私家车' },
-                        { value: 310, name: '转账他人' },
-                        { value: 234, name: '红包支出' },
-                        { value: 135, name: '超市便利' },
-                        { value: 1548, name: '公共交通' }
-                    ]
+                    data: newChartsData.length?newChartsData:[{value:0,name:'暂无数据'}]
                 }
             ]
         })

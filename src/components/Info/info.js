@@ -4,8 +4,8 @@ import {
     Select, Card, Icon, Button, Tooltip, Modal,
     Form, Input, message, Divider, Popconfirm
 } from 'antd';
-import { queryAccount, deleteAccount, updateAccount} from '../../api/getHomeData'; // 记账接口
-import { getMonthDateReal } from '../../api/getHomeData'; // 账单详情
+import { queryAccount, deleteAccount, updateAccount, getMonthDateReal} from '../../api/getHomeData'; // 获取接口
+
 const { RangePicker } = DatePicker;
 import './info.css';
 import Table from '../common/tables';//引入tables组件

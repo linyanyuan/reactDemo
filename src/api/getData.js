@@ -44,14 +44,3 @@ export const postData = ({url,type,param} = {}) =>{
         })
     }) 
 }
-// export const getData = ({url,type,param} = {}) =>{
-//     return new Promise((resolve,reject) =>{
-//         axios.get(url,{
-//             params:param
-//         }).then(res =>{
-//             resolve(res.data)
-//         }).catch(err =>{
-//             reject(err)
-//         })
-//     })
-// }
