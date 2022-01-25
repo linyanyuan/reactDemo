@@ -21,3 +21,4 @@ export const deleteAccount = (param) => {
 export const updateAccount = (param) => {
     return getData({param,...{url:api.updateAccount}})
 } 
+//测试
