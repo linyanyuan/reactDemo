@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 class LineCharts extends Component {
-    componentDidMount() {
-        // 挂载完成
-        let that = this;
-
-        setTimeout(() => {
-            that.initLineChart()
-        }, 200)
+    constructor(props,context) {
+        super(props,context);
     }
-    initLineChart() {
+    UNSAFE_componentWillReceiveProps(nextPorps) {
+        this.initLineChart(nextPorps)
+    }
+    static propTypes = {
+        lineData:PropTypes.object.isRequired
+    }
+    static defaultProps = {
+        lineData:{}
+    }
+    initLineChart(nextPorps) {
         // 初始化
+        const {lineData,newDate} = nextPorps.lineData;
         let lineCharts = echarts.init(document.getElementById("line_main"));
         lineCharts.setOption({
             xAxis: {
@@ -18,7 +24,7 @@ class LineCharts extends Component {
                 axisLabel: {
                     interval: 0
                 },
-                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月',]
+                data: newDate
             },
             grid: {
                 top: '5%',
@@ -67,7 +73,7 @@ class LineCharts extends Component {
                         width: 3
                     },
                     smooth: true,
-                    data: [8000, 9500, 6268, 9457, 5209, 7191, 12334, 5872, 19589, 15655, 10265, 5420]
+                    data: lineData
                 }
             ]
         })
